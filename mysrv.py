@@ -9,7 +9,7 @@ clients = []
 lock = threading.Lock()
 
 
-class mainChat(threading.Thread):
+class MainChat(threading.Thread):
     def __init__(self, (socket, address)):
         threading.Thread.__init__(self)
         self.socket = socket
@@ -44,9 +44,7 @@ class mainChat(threading.Thread):
         while 1:
             data = self.socket.recv(256)
             self.interpreter(data)
-        self.socket.close()
-        self.remove_client()
 
 
 while 1:
-    mainChat(server.accept()).start()
+    MainChat(server.accept()).start()
